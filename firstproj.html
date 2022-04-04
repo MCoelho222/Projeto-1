@@ -10,7 +10,7 @@
 </head>
 <body>
     <header>
-        <h1>Minhas Compras</h1>
+        <h1>Lista de Compras</h1>
     </header>
     <main>
         <div id="input-div">
@@ -19,8 +19,17 @@
             <button id="add-prod">Adicionar</button>
             <button id="reset">Limpar</button>
         </div>
-        <div id="lista-prod"></div>
+        <div id="lista-prod">
+            <table id="tabela">
+                <thead>
+                    <th id="th-1">Select</th>
+                    <th id="th-2">Products</th>
+                    <th id="th-3">Action</th>
+                </thead>
+                <tbody id="t-corpo"></tbody>
+            </table>
+        </div>
     </main>
-    <script src="./firstproj.js"></script>
+    <script src="./firstproj.js" type="module"></script>
 </body>
 </html>
