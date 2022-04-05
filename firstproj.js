@@ -1,16 +1,12 @@
-import Produtos from './produtos.js';
+import Produtcs from './produtos.js';
 
  // Cria uma nova instância da classe Produtos
- const prods = new Produtos();
+ const prods = new Produtcs();
 
-// function addProd() {
-//     return prods.insereProduto();
-     // Seleciona o botão deadicionar produto
-     // Insere função no botão adicionar
-//};
-let addBtn = document.getElementById('add-prod');
-addBtn.addEventListener('click', () => prods.insereProduto());
+let addBtn = document.getElementById('add-btn');
+addBtn.addEventListener('click', () => prods.insertProduct());
 
-//let resetBtn = document.getElementById('reset-btn'); // Seleciona o botão de resetar lista
+let resetBtn = document.getElementById('reset-btn');
+resetBtn.addEventListener('click', () => prods.cleanList());
 
-//console.log(typeof('jfjnv'))
+prods.initialize()
