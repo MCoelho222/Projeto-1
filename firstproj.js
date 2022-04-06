@@ -9,4 +9,7 @@ addBtn.addEventListener('click', () => prods.insertProduct());
 let resetBtn = document.getElementById('reset-btn');
 resetBtn.addEventListener('click', () => prods.cleanList());
 
+let rmvChecked = document.getElementById('rmv-checked');
+rmvChecked.addEventListener('click', () => prods.removeChecked())
+
 prods.initialize()
