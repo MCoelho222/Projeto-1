@@ -112,7 +112,7 @@ export default class Produtcs {
                     // pede ao usuário que digite o valor
                     do {
                         if (isNaN(price)) {
-                            alert('- Não utilize "."\n- Utilize "," para decimais');
+                            alert('- Não utilize separador de milhar "."\n- Utilize "," para decimais');
                         };
                         value = prompt('Valor:');
                         price = Number(value.replace(',', '.'));
