@@ -48,6 +48,7 @@ export default class Produtcs {
         this.arrProd.forEach(item => {
             // Cria 1 linha com 3 células
             let tr = tbody.insertRow();
+            tr.style.rowHeight
             let tr_select = tr.insertCell();
             tr_select.style.width = '30px';
             let tr_prod = tr.insertCell();
@@ -113,13 +114,11 @@ export default class Produtcs {
     insertValue(id) {
         let checkBox = document.getElementById(`check-${id}`);
         this.arrProd.forEach(item => {
-            console.log(item)
             if (item.id == id) {
                 // Se checkbox checked...
                 if (checkBox.checked) {
-                    console.log('true')
                     let price = 0;
-                    let value
+                    let value;
                     // Enquanto não for um número no formato "000.00",
                     // pede ao usuário que digite o valor
                     do {
@@ -127,10 +126,12 @@ export default class Produtcs {
                             alert('- Não utilize separador de milhar "."\n- Utilize "," para decimais');
                         };
                         value = prompt('Valor:');
-                        price = Number(value.replace(',', '.'));
-                        item.status = checkBox.checked;
+                        if (value !== null) {
+                            price = Number(value.replace(',', '.'));
+                            item.status = checkBox.checked;
+                        };
                         // Se o usuário cancelar o prompt...
-                        if (value == null) {
+                        if (value == '' || value == null) {
                             item.status = false;
                             price = 0;
                             break; 
@@ -139,14 +140,14 @@ export default class Produtcs {
                     item.price = price;
                 } // Se checkbox unchecked...
                 else {
-                    console.log(false);
                     item.price = 0;
                     item.status = false;
                 };
             };
         });
-        this.writeTotal();
-        this.saveJSON();
+        this.insertList();
+        // this.writeTotal();
+        // this.saveJSON();
     }
     // Imprime o valor total da compra
     // no formato moeda brasileira

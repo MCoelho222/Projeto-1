@@ -1,4 +1,4 @@
-html, body {
+html{
     height: 100%;
 }
 body {
@@ -6,7 +6,6 @@ body {
     margin-left:300px;
     background-color: #013A6B;
     background-image: -webkit-linear-gradient(-50deg, #084c88 50%, #ffffff 50%);
-    /*background-image: linear-gradient(to bottom right, blue, white);*/
 }
 
 header {
@@ -34,6 +33,13 @@ tbody {
 p {
     margin: 0;
 }
+.check:checked {
+    background-color: aqua;
+}
+.check:hover {
+    cursor:pointer;
+    transition: 200ms;
+}
 .del-btn {
     font-size: 1em;
     margin: 0;
@@ -44,21 +50,32 @@ p {
     color: black;
     margin-left: 5px;
 }
+.del-btn:hover {
+    background-color: black;
+    color: white;
+    cursor: pointer;
+    transition: 200ms;
+}
 .rmv-btn {
     padding: 10px 20px;
     font-size: 1em;
     font-weight:200;
     border-radius: 4px;
-    background-color: rgb(62, 109, 196);
+    background-color: rgb(20, 92, 225);
     border: 0;
     color: white;
+}
+.rmv-btn:hover {
+    background-color:rgb(72, 132, 227);
+    cursor: pointer;
+    transition: 200ms;
 }
 #input-div {
     margin: 0;
 }
 #prod-input {
     font-size: 1em;
-    min-width: 50%;
+    min-width: 55%;
     border-color: rgb(0, 119, 255);
     border-radius: 4px;
     border-width: 1.5px;
@@ -67,6 +84,8 @@ p {
 }
 #tabela {
     text-align: left;
+    border-collapse: separate;
+    border-spacing: 10px;
 }
 #price {
     margin-left: 50px;
@@ -86,14 +105,17 @@ p {
     padding: 10px 0px 10px 10px;
     color: white;
     background-color: rgb(63, 63, 63);
-    width: 50%;
+    width: 60%;
     min-height: 250px;
 }
 #price-title {
     font-size: 1.5em;
+    margin-bottom: 20px;
 }
 #price-par {
-    font-size: 2em;
-    margin-top: 10px;
+    font-size: 3em;
+    margin-top: 30px;
+    margin-left: 50px;
+    font-weight: 550;
     
 }
