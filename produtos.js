@@ -49,8 +49,12 @@ export default class Produtcs {
             // Cria 1 linha com 3 células
             let tr = tbody.insertRow();
             let tr_select = tr.insertCell();
+            tr_select.style.width = '30px';
             let tr_prod = tr.insertCell();
+            tr_prod.style.minWidth = '80px';
             let tr_action = tr.insertCell();
+            tr_action.style.width = '10px';
+            tr_action.style.textAlign = 'center';
             // Cria um input type=checkbox,
             // atribui mesmo id do produto,
             // insere na primeira coluna
@@ -66,12 +70,20 @@ export default class Produtcs {
             tr_prod.innerText = item.nome; 
             // Cria um elemento imagem com mesmo id do produto,
             // atribui função deletar a prop. onclick
-            let imgElement = document.createElement('img'); 
-            imgElement.setAttribute('class', 'del-btn');
-            imgElement.setAttribute('id', `${item.id}`);
-            imgElement.src = './deleteicon.png';
-            imgElement.onclick = () => this.delete(item.id);
-            tr_action.appendChild(imgElement);
+            let delElement = document.createElement('p');
+            delElement.style.border = '1px solid #FFFFFF'
+            delElement.setAttribute('class', 'del-btn');
+            delElement.setAttribute('id', `${item.id}`);
+            delElement.innerHTML = 'x';
+            delElement.onclick = () => this.delete(item.id);
+            tr_action.appendChild(delElement);
+
+            // let imgElement = document.createElement('img'); 
+            // imgElement.setAttribute('class', 'del-btn');
+            // imgElement.setAttribute('id', `${item.id}`);
+            // imgElement.src = './deleteicon.png';
+            // imgElement.onclick = () => this.delete(item.id);
+            // tr_action.appendChild(imgElement);
             });
         this.saveJSON();
         this.writeTotal();

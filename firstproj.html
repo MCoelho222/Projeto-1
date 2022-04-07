@@ -10,28 +10,29 @@
 </head>
 <body>
     <header>
-        <h1>Lista de Compras</h1>
+        <img src="./devinhouse-logo.png" alt="">
     </header>
     <main>
         <div id="input-div">
             <label for="prod-input">Inserir item na lista:</label>
-            <input type="text" id="prod-input">
-            <button id="add-btn">Inserir</button>
-            <button id="reset-btn">Limpar</button>
-            <button id="rmv-checked">Remover comprados</button>
+            <input type="text" id="prod-input" placeholder="Digite o nome do produto">
+            <button class="rmv-btn" id="add-btn">Inserir</button>
+            <button class="rmv-btn" id="reset-btn">Limpar</button>
+            <button class="rmv-btn" id="rmv-checked">Remover comprados</button>
         </div>
-        <div id="lista-prod">
+        <div class="display" id="lista">
             <table id="tabela">
+                <p id="tabletitle">Lista de compras</p>
                 <thead>
-                    <th id="th-1">Select</th>
-                    <th id="th-2">Products</th>
-                    <th id="th-3">Action</th>
+                    <!--<th id="th-1">Lista de produtos</th>-->
+                    <!--<th id="th-2"></th>-->
+                    <!--<th id="th-3"></th>-->
                 </thead>
                 <tbody id="t-corpo"></tbody>
             </table>
         </div>
-        <div id="price-div">
-            <h3 id="price-title">Total:</h3> 
+        <div class="display" id="price">
+            <p id="price-title">Total das compras:</p> 
             <p id="price-par"></p>
         </div>
     </main>
