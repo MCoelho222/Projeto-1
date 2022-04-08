@@ -23,7 +23,7 @@ export default class Produtcs {
     // imprime no navegador
     insertProduct() {
         let prod = this.read();
-        // Se input não-vazio...
+        // Se input não-vazio
         if (prod) {
             let arrLength = this.arrProd.length;
             this.arrProd.push({
@@ -48,10 +48,10 @@ export default class Produtcs {
         this.arrProd.forEach(item => {
             // Cria 1 linha com 3 células
             let tr = tbody.insertRow();
-            tr.style.rowHeight
             let tr_select = tr.insertCell();
             tr_select.style.width = '30px';
             let tr_prod = tr.insertCell();
+            tr_prod.id = `td-${item.id}`;
             tr_prod.style.minWidth = '80px';
             let tr_action = tr.insertCell();
             tr_action.style.width = '10px';
@@ -68,7 +68,20 @@ export default class Produtcs {
             tr_select.appendChild(checkBox);
             checkBox.checked = item.status;
             checkBox.onchange = () => this.insertValue(item.id);
-            tr_prod.innerText = item.nome; 
+            // checkBox.onchange = () => this.modal(item.id);
+            
+            if (!item.status) {
+                let prodNome = document.createElement('p');
+                prodNome.id = `nome-${item.id}`;
+                prodNome.innerHTML = item.nome;
+                tr_prod.appendChild(prodNome);
+            };
+            if (item.status) {
+                let prodNome = document.createElement('s');
+                prodNome.id = `nome-${item.id}`;
+                prodNome.innerHTML = item.nome;
+                tr_prod.appendChild(prodNome);
+            };
             // Cria um elemento imagem com mesmo id do produto,
             // atribui função deletar a prop. onclick
             let delElement = document.createElement('p');
@@ -78,13 +91,6 @@ export default class Produtcs {
             delElement.innerHTML = 'x';
             delElement.onclick = () => this.delete(item.id);
             tr_action.appendChild(delElement);
-
-            // let imgElement = document.createElement('img'); 
-            // imgElement.setAttribute('class', 'del-btn');
-            // imgElement.setAttribute('id', `${item.id}`);
-            // imgElement.src = './deleteicon.png';
-            // imgElement.onclick = () => this.delete(item.id);
-            // tr_action.appendChild(imgElement);
             });
         this.saveJSON();
         this.writeTotal();
@@ -115,12 +121,12 @@ export default class Produtcs {
         let checkBox = document.getElementById(`check-${id}`);
         this.arrProd.forEach(item => {
             if (item.id == id) {
-                // Se checkbox checked...
+                // Se checkbox checked
                 if (checkBox.checked) {
                     let price = 0;
                     let value;
-                    // Enquanto não for um número no formato "000.00",
-                    // pede ao usuário que digite o valor
+                    // Enquanto formato != "0000,00" ou "0000.00"
+                    // solicita ao usuário que digite o valor
                     do {
                         if (isNaN(price)) {
                             alert('- Não utilize separador de milhar "."\n- Utilize "," para decimais');
@@ -130,7 +136,7 @@ export default class Produtcs {
                             price = Number(value.replace(',', '.'));
                             item.status = checkBox.checked;
                         };
-                        // Se o usuário cancelar o prompt...
+                        // Se o usuário cancelar o prompt ou der ok sem digitar
                         if (value == '' || value == null) {
                             item.status = false;
                             price = 0;
@@ -138,16 +144,14 @@ export default class Produtcs {
                         };
                     } while (isNaN(price) || price === 0);
                     item.price = price;
-                } // Se checkbox unchecked...
+                } // Se checkbox unchecked
                 else {
                     item.price = 0;
                     item.status = false;
                 };
             };
         });
-        this.insertList();
-        // this.writeTotal();
-        // this.saveJSON();
+    this.insertList();
     }
     // Imprime o valor total da compra
     // no formato moeda brasileira
@@ -159,9 +163,10 @@ export default class Produtcs {
     //Salva lista de produtos no localStorage
     // ou limpa localStorage se lista vazia
     saveJSON() {
+        let jsonFile = JSON.stringify(this.arrProd);
         let cond = this.arrProd.length > 0 ? localStorage.setItem('lastSale', JSON.stringify(this.arrProd)): localStorage.clear();
     }
-    // Insere localStorage quando a página reaberta ou atualizada
+    // Insere localStorage quando página reaberta ou atualizada
     initialize() {
         let lastList = localStorage.getItem('lastSale');
         if (lastList !== null) {
@@ -179,5 +184,19 @@ export default class Produtcs {
             element.id = index + 1;
         }
         this.insertList();
+    }
+    modal() {
+        let modal = document.getElementById("myModal");
+        let span = document.getElementsByClassName("close")[0];
+        modal.style.display = "block";
+        span.onclick = function() {
+            modal.style.display = "none";
+        };
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            };
+        };
     }
 }

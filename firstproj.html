@@ -15,10 +15,27 @@
     <main>
         <div id="input-div">
             <label for="prod-input">Inserir item na lista:</label>
-            <input type="text" id="prod-input" placeholder="Digite o nome do produto">
-            <button class="rmv-btn" id="add-btn">Inserir</button>
-            <button class="rmv-btn" id="reset-btn">Limpar</button>
-            <button class="rmv-btn" id="rmv-checked">Remover comprados</button>
+            <input type="text"
+             id="prod-input" 
+             placeholder="Digite o nome do produto">
+            <button 
+            class="rmv-btn" 
+            id="add-btn" 
+            title="Após digitar o nome clique para inserir na lista">
+            Inserir
+            </button>
+            <button 
+            class="rmv-btn" 
+            id="reset-btn" 
+            title="Clique para limpar todos os produtos da lista">
+            Limpar
+            </button>
+            <button 
+            class="rmv-btn" 
+            id="rmv-checked" 
+            title="Clique para excluir apenas os itens comprados">
+            Remover comprados
+            </button>
         </div>
         <div class="display" id="lista">
             <table id="tabela">
@@ -34,6 +51,12 @@
         <div class="display" id="price">
             <p id="price-title">Total das compras:</p> 
             <p id="price-par"></p>
+        </div>
+        <div id="myModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <p><input type="number" name="prod-val" id="prod-val"></p>
+            </div>
         </div>
     </main>
     <script src="./firstproj.js" type="module"></script>
