@@ -40,12 +40,15 @@ export default class Produtcs {
     // Cria elementos da tabela,
     // insere produtos e imprime no navegador
     insertList() {
+        let modalInput = document.getElementById('prod-val');
+        modalInput.onchange = () => this.insertValue();
         // Seleciona corpo da tabela
         let tbody = document.getElementById('t-corpo');
         tbody.innerHTML ='';
         // Imprime uma linha para cada produto,
         // checkbox | nome do produto |img deletar
         this.arrProd.forEach(item => {
+            
             // Cria 1 linha com 3 células
             let tr = tbody.insertRow();
             let tr_select = tr.insertCell();
@@ -67,15 +70,15 @@ export default class Produtcs {
             checkBox.setAttribute('id', `check-${item.id}`); 
             tr_select.appendChild(checkBox);
             checkBox.checked = item.status;
-            checkBox.onchange = () => this.insertValue(item.id);
-            // checkBox.onchange = () => this.modal(item.id);
-            
+            checkBox.onchange = () => this.modal();
+            // Se checkbox unchecked, escreve nome do produto normal
             if (!item.status) {
                 let prodNome = document.createElement('p');
                 prodNome.id = `nome-${item.id}`;
                 prodNome.innerHTML = item.nome;
                 tr_prod.appendChild(prodNome);
             };
+            // Se checkbox checked, escreve nome do produto tachado
             if (item.status) {
                 let prodNome = document.createElement('s');
                 prodNome.id = `nome-${item.id}`;
@@ -105,6 +108,7 @@ export default class Produtcs {
             const element = this.arrProd[index];
             element.id = index + 1;
         }
+        // Recerrega produtos na tela
         this.insertList();
     }
     // Deleta todos os item de uma vez,
@@ -112,55 +116,40 @@ export default class Produtcs {
     cleanList() {
         this.arrProd = [];
         let tbody = document.getElementById('t-corpo');
-        tbody.innerHTML ='';
-        this.writeTotal();
+        tbody.innerHTML =''; // Apaga lista da tela
+        this.writeTotal(); // Imprime total=0,00
     }
-    // Solicita valor para checked
-    // retorna ao status false e price=0 se unchecked
-    insertValue(id) {
-        let checkBox = document.getElementById(`check-${id}`);
-        this.arrProd.forEach(item => {
-            if (item.id == id) {
-                // Se checkbox checked
-                if (checkBox.checked) {
-                    let price = 0;
-                    let value;
-                    // Enquanto formato != "0000,00" ou "0000.00"
-                    // solicita ao usuário que digite o valor
-                    do {
-                        if (isNaN(price)) {
-                            alert('- Não utilize separador de milhar "."\n- Utilize "," para decimais');
-                        };
-                        value = prompt('Valor:');
-                        if (value !== null) {
-                            price = Number(value.replace(',', '.'));
-                            item.status = checkBox.checked;
-                        };
-                        // Se o usuário cancelar o prompt ou der ok sem digitar
-                        if (value == '' || value == null) {
-                            item.status = false;
-                            price = 0;
-                            break; 
-                        };
-                    } while (isNaN(price) || price === 0);
-                    item.price = price;
-                } // Se checkbox unchecked
-                else {
-                    item.price = 0;
-                    item.status = false;
-                };
+    // Pega o valor do input de valor
+    // Insere o valor na propriedade price objeto
+    // Recarrega a lista na tela
+    insertValue() {
+        let modalValue = document.getElementById('prod-val');
+        for (let i = 0; i < this.arrProd.length; i++) {
+            const element = this.arrProd[i];
+            let checkBox = document.getElementById(`check-${i + 1}`);
+            console.log(checkBox.checked);
+            if (element.status && element.price == 0) {
+                element.price = Number(modalValue.value.replace(',', '.'));
+                if (isNaN(element.price)) {
+                    alert('- Utilize apenas números sem separador de milhar ".";\n- Utilize "," para centavos.')
+                    modalValue.value =''
+                    element.price = 0;
+                    this.modal();
+                }; 
             };
-        });
-    this.insertList();
+        };
+        this.insertList();
     }
     // Imprime o valor total da compra
     // no formato moeda brasileira
     writeTotal() {
-        let total = this.arrProd.reduce((acc, item) => acc + item.price, 0);
+        let checkedItens = this.arrProd.filter(item => item.status == true);
+        let total = checkedItens.reduce((acc, item) => acc + item.price, 0);
+        //let total = this.arrProd.reduce((acc, item) => acc + item.price, 0);
         let par = document.getElementById('price-par');
         par.innerHTML = total.toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'});
     }
-    //Salva lista de produtos no localStorage
+    // Salva lista de produtos no localStorage
     // ou limpa localStorage se lista vazia
     saveJSON() {
         let jsonFile = JSON.stringify(this.arrProd);
@@ -171,8 +160,10 @@ export default class Produtcs {
         let lastList = localStorage.getItem('lastSale');
         if (lastList !== null) {
             this.arrProd = JSON.parse(lastList);
-            this.insertList();
-        };
+        } else {
+            this.arrProd = [];
+        }
+        this.insertList();
     }
     // Remove os itens checked
     removeChecked() {
@@ -185,18 +176,47 @@ export default class Produtcs {
         }
         this.insertList();
     }
+    // Solicita um input do valor do produto
     modal() {
         let modal = document.getElementById("myModal");
-        let span = document.getElementsByClassName("close")[0];
-        modal.style.display = "block";
-        span.onclick = function() {
-            modal.style.display = "none";
-        };
-        // When the user clicks anywhere outside of the modal, close it
-        window.onclick = function(event) {
-            if (event.target == modal) {
-                modal.style.display = "none";
+        // Itera o array de produtos
+        for (let i = 0; i < this.arrProd.length; i++) {
+            const element = this.arrProd[i];
+            let checkBox = document.getElementById(`check-${i + 1}`);
+            // Se checked e valor zerado
+            if (checkBox.checked && element.price == 0) {
+                element.status = true;
+                modal.style.display = "block";
+            }
+            // Se unchecked e valor != 0
+            // Reseta status=false e price=0
+            if (!checkBox.checked && element.price != 0) {
+                element.status = false;
+                element.price = 0;
+                // Recarrega produtos na tela
+                this.insertList();
             };
         };
     }
+    // Fecha o modal
+    closeModal() {
+        let modal = document.getElementById("myModal");
+        let modalValue = document.getElementById('prod-val');
+        // Itera o array de produtos
+        for (let i = 0; i < this.arrProd.length; i++) {
+            const element = this.arrProd[i];
+            let checkBox = document.getElementById(`check-${i + 1}`);
+            // Se deu check mas não inseriu valor, reseta status=false
+            if (checkBox.checked && element.price == 0) {
+                element.status = false;
+            };
+        };
+        // Reseta o input de valor
+        modalValue.value = '';
+        // Fecha modal
+        modal.style.display = "none";
+        // Recarrega produtos na tela
+        this.insertList();
+    };
+
 }

@@ -10,7 +10,7 @@
 </head>
 <body>
     <header>
-        <img src="./devinhouse-logo.png" alt="">
+        <img src="./devinhouse-logo.png" alt="logo-DEVinHouse">
     </header>
     <main>
         <div id="input-div">
@@ -41,9 +41,6 @@
             <table id="tabela">
                 <p id="tabletitle">Lista de compras</p>
                 <thead>
-                    <!--<th id="th-1">Lista de produtos</th>-->
-                    <!--<th id="th-2"></th>-->
-                    <!--<th id="th-3"></th>-->
                 </thead>
                 <tbody id="t-corpo"></tbody>
             </table>
@@ -55,7 +52,12 @@
         <div id="myModal" class="modal">
             <div class="modal-content">
                 <span class="close">&times;</span>
-                <p><input type="number" name="prod-val" id="prod-val"></p>
+                <p id="labelInput-p">Valor do produto:</p>
+                <div id="valueInput-div"><input 
+                    type="text" 
+                    name="prod-val" 
+                    id="prod-val" title="Não utilize '.'" placeholder="Digite o valor do produto">
+                </div>
             </div>
         </div>
     </main>

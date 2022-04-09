@@ -7,19 +7,22 @@ body {
     background-color: #013A6B;
     background-image: -webkit-linear-gradient(-50deg, #ad419d 50%, #ffffff 50%);
 }
-
+/* Espaço logo-DEVinHouse */
 header {
     text-align: right;
     margin: 0px 0 0 0;
 }
+/* logo-DEVinHouse */
 header img {
     max-width: 10%;
 }
+/* Espaço lista de compras e total */
 main {
     text-align: left;
     margin-top: 50px;
     min-height: 100%;
 }
+/* Rótulo do input de produto */
 label {
     color: white;
     font-size: 1.5em;
@@ -27,19 +30,20 @@ label {
     margin-right: 250px;
     margin-bottom: 5px;
 }
+/* Corpo da lista de compras */
 tbody {
     font-size: 1em;
-} 
+}
+/* Parágrafos da lista de compras e modal */
 p {
     margin: 0;
 }
-.check:checked {
-    background-color: aqua;
-}
+/* Checkboxes */
 .check:hover {
     cursor:pointer;
     transition: 100ms;
 }
+/* Botões deleta produto "x" */
 .del-btn {
     font-size: 1em;
     margin: 0;
@@ -50,6 +54,7 @@ p {
     color: black;
     margin-left: 5px;
 }
+/* Botões deleta produto "x" */
 .del-btn:hover {
     background-color:rgb(121, 163, 231);
     color: white;
@@ -57,56 +62,58 @@ p {
     cursor: pointer;
     transition: 300ms;
 }
+/* Botões "limpar" e "Remover comprados" "x" */
 .rmv-btn {
-    /*-webkit-backdrop-filter: blur(30px);*/
-    backdrop-filter: blur(10px);
     padding: 10px 20px;
     font-size: 1em;
-    font-weight:200;
     border-radius: 6px;
-    background-color: rgba(2, 6, 12, 0.6) ;
+    background-color: rgb(95, 95, 96) ;
     border: 0;
     color: white;
 }
+/* Botões "limpar" e "Remover comprados" "x" */
 .rmv-btn:hover {
     font-weight: bold;
-    background-color:rgb(121, 163, 231);
+    background-color:#353335;
     cursor: pointer;
     transition: 100ms;
 }
-.riscado {
-    text-decoration: line-through;
-}
+/* Div do input de produtos */
 #input-div {
     margin: 0;
 }
+/* Input de produtos */
 #prod-input {
     font-size: 1em;
     min-width: 55%;
-    
     border-radius: 4px;
     border-width: 1.5px;
     padding: 10px 0 8px 6px;
     margin-right: 20px;
 }
+/* Elemento table para lista de produtos */
 #tabela {
     text-align: left;
     border-collapse: separate;
     border-spacing: 10px;
 }
+/* Div do valor total das compras */
 #price {
     margin-left: 50px;
     margin-top: 20px;
     padding-top: 50px;
 }
+/* Elemento <p> título da tabela */
 #tabletitle {
     margin: 0 0 20px 15px;
     font-size: 1.4em;
 }
+/* Div's da table e total das compras */
 .display {
     display:inline-table;
     text-align: left;
 }
+/* div da table para lista de produtos */
 #lista {
     backdrop-filter: blur(10px);
     border-radius: 20px;
@@ -116,17 +123,21 @@ p {
     width: 55%;
     min-height: 250px;
 }
+/* Elemento <p> - Total das compras */
 #price-title {
     font-size: 1.5em;
     margin-bottom: 20px;
 }
+/* Elemento <p> - Valor total */
 #price-par {
     font-size: 3em;
     margin-top: 30px;
     margin-left: 0px;
     font-weight: 550;  
 }
+/* Div do modal para input de valor */
 .modal {
+    backdrop-filter: blur(15px);
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
     z-index: 1; /* Sit on top */
@@ -137,28 +148,39 @@ p {
     overflow: auto; /* Enable scroll if needed */
     background-color: rgb(0,0,0); /* Fallback color */
     background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-  }
-  
-  /* Modal Content/Box */
-  .modal-content {
-    background-color: #fefefe;
-    margin: 15% auto; /* 15% from the top and centered */
-    padding: 20px;
-    border: 1px solid #888;
-    width: 80%; /* Could be more or less, depending on screen size */
-  }
-  
-  /* The Close Button */
-  .close {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-  }
-  
-  .close:hover,
-  .close:focus {
-    color: black;
-    text-decoration: none;
-    cursor: pointer;
-  }
+}
+/* Modal Content/Box */
+.modal-content {
+background-color: #50b7f3;
+margin: 15% auto; /* 15% from the top and centered */
+padding: 20px;
+border: 1px solid #888;
+width: 30%; /* Could be more or less, depending on screen size */
+}
+/* Rótulo do input do modal */
+#labelInput-p {
+    font-size: 1em;
+    margin-bottom: 10px;
+    font-weight:lighter;
+}
+/* Input do valor produto */
+#prod-val {
+    border: 0;
+    border-radius: 2px;
+    width: 80%;
+    font-size: 1em;
+}
+/* The Close Button */
+.close {
+color: #aaa;
+float: right;
+font-size: 28px;
+font-weight: bold;
+}
+/**/
+.close:hover,
+.close:focus {
+color: black;
+text-decoration: none;
+cursor: pointer;
+}
