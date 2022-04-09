@@ -31,8 +31,8 @@ Lista de compras onde o usuário entra com um nome de produto e insere na lista.
 
 ### produtos.js
 
-> Define e EXPORTA **class Products**;
-> Contém funções:
+> - Define e EXPORTA **class Products**;
+> - Contém funções:
 >> - **read()**: ler dados do input do produto;
 >> - **validate(input)**: validar input de produto;
 >> - **insertProduct()**: inserir produtos digitados no array de produtos;
@@ -42,7 +42,7 @@ Lista de compras onde o usuário entra com um nome de produto e insere na lista.
 >> - **insertValue()**: Inserir no objeto do produto o valor digitado;
 >> - **writeTotal()**: Calcular o valor total das compras (only checked);
 >> - **saveJSON()**: salvar lista no localStorage;
->> **initialize()**: recarregar lista do localStorage ao atualizar/reabrir página;
+>> - **initialize()**: recarregar lista do localStorage ao atualizar/reabrir página;
 >> - **removeChecked()**: remover comprados (checked);
 >> - **modal()**: cria pop-up para input de valor;
 >> - **closeModal()**: fechar modal.
