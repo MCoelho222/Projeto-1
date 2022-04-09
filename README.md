@@ -33,31 +33,31 @@ Lista de compras onde o usuário entra com um nome de produto e insere na lista.
 
 > Define e EXPORTA **class Products**;
 > Contém funções:
->> **read()**: ler dados do input do produto;
->> **validate(input)**: validar input de produto;
->> **insertProduct()**: inserir produtos digitados no array de produtos;
->> **insertList()**: criar linhas, checkboxes, botões deletar na lista de produtos; inserir nomes; imprimir lista; somar produtos comprados;
->> **delete(id)**: remover um item por id; recarregar lista de produtos;
->> **cleanList()**: remover todos os itens da lista e zerar valor total;
->> **insertValue()**: Inserir no objeto do produto o valor digitado;
->> **writeTotal()**: Calcular o valor total das compras (only checked);
->> **saveJSON()**: salvar lista no localStorage;
+>> - **read()**: ler dados do input do produto;
+>> - **validate(input)**: validar input de produto;
+>> - **insertProduct()**: inserir produtos digitados no array de produtos;
+>> - **insertList()**: criar linhas, checkboxes, botões deletar na lista de produtos; inserir nomes; imprimir lista; somar produtos comprados;
+>> - **delete(id)**: remover um item por id; recarregar lista de produtos;
+>> - **cleanList()**: remover todos os itens da lista e zerar valor total;
+>> - **insertValue()**: Inserir no objeto do produto o valor digitado;
+>> - **writeTotal()**: Calcular o valor total das compras (only checked);
+>> - **saveJSON()**: salvar lista no localStorage;
 >> **initialize()**: recarregar lista do localStorage ao atualizar/reabrir página;
->> **removeChecked()**: remover comprados (checked);
->> **modal()**: cria pop-up para input de valor;
->> **closeModal()**: fechar modal.
+>> - **removeChecked()**: remover comprados (checked);
+>> - **modal()**: cria pop-up para input de valor;
+>> - **closeModal()**: fechar modal.
 
 ### firstproj.js
 
-> IMPORTA **class Products**;
-> Executa função **initialize()**;
-> Contém os **eventListeners** para:
->> Botão inserir;
->> Botão Limpar;
->> Botão Remover comprados;
->> Botão para fechar modal;
->> window;
->> Enter (modal e inserir).
+> - IMPORTA **class Products**;
+> - Executa função **initialize()**;
+> - Contém os **eventListeners** para:
+>> - Botão inserir;
+>> - Botão Limpar;
+>> - Botão Remover comprados;
+>> - Botão para fechar modal;
+>> - window;
+>> - Enter (modal e inserir).
 
 # Requisitos para avaliação do projeto
 
