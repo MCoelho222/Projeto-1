@@ -38,6 +38,14 @@ tbody {
 p {
     margin: 0;
 }
+footer {
+    position: fixed;
+    bottom: 10px;
+    text-align: center;
+    font-style: italic;
+    left: 0;
+    right: 0;
+}
 /* Checkboxes */
 .check:hover {
     cursor:pointer;
